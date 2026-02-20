@@ -1,0 +1,14 @@
+@startuml
+object Timer
+object "Robot Controller" as RC
+object Sensors
+object Actuators
+object "Command queue" as Commands
+Timer -right-> RC : 1: Triggers event
+RC -up-> Sensors : 2: Read
+RC <.. Sensors : Sensor values
+RC -down-> Actuators : 3: Send control commands
+RC <.. Actuators : Ack
+RC -right-> Commands : 4: Retrieve next
+RC <.. Commands : Command
+@enduml

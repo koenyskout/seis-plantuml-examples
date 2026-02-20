@@ -1,0 +1,42 @@
+@startuml
+package "E-shop" {
+    package "Accounting" {
+        class Invoice {
+            amount: Money
+            status(): Status
+        }
+        interface Payment {
+            timestamp: DateTime
+        }
+        abstract class BasePayment extends Payment
+        class Cash extends BasePayment
+        class CreditCard extends BasePayment
+        class BankTransfer extends BasePayment
+        Invoice - Payment : > paid
+    }
+    package "Util" {
+        class Money {}
+    }
+    package "Shopping" {
+        class ShoppingCart {
+            coupons : Coupon[]
+            total(): Money
+        }
+        class CartItem {
+            amount: Int
+        }
+        interface Product {
+            id : SKU
+            price : Money
+        }
+        class PhysicalProduct {}
+        class DigitalProduct {}
+        ShoppingCart *-- "0..*" CartItem
+        CartItem - "1" Product : > orderedProduct
+        Product <|-- PhysicalProduct
+        Product <|-- DigitalProduct
+    }
+    Accounting ..> Util
+    Shopping ..> Util
+}
+@enduml

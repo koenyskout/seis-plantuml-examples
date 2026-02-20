@@ -1,0 +1,19 @@
+@startuml
+component "IoT Device 1" as iot
+[IoT Device 2] as iot2
+() "MQTT: Publish" as MQTT
+() "MQTT: Subscribe" as MQTTSub
+() Notify
+
+iot --( MQTT
+iot2 --( MQTT
+
+component Broker
+component Visualization
+
+MQTT -- Broker
+Broker -- MQTTSub
+Broker --( Notify
+MQTTSub )-- Visualization
+Notify -- Visualization
+@enduml

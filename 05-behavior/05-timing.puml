@@ -1,0 +1,24 @@
+@startuml
+clock "Cycle" as C0 with period 2
+robust "Temperature Sensor" as TS
+robust "Controller" as CT
+robust "Fan" as F
+@0
+TS is Normal
+CT is Idle
+F is Off
+@2.7
+TS is Overheat
+TS --> CT@4.2
+@4.2
+CT is "Cooling"
+@4.7
+F is On
+@7.6
+TS is Normal
+TS --> CT@8.2
+@8.2
+CT is Idle
+@8.7
+F is Off
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+node Docker {
+    node "DB container" {
+        component Database
+    }
+    node "Webserver container" {
+        component "Application" as app
+        component "API gateway" as rest
+    }
+}
+node Browser {
+    component "React App" as react
+}
+@enduml

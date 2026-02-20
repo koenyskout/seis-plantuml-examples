@@ -1,0 +1,19 @@
+@startuml
+actor Timer
+participant "Robot Controller" as RC
+participant "Sensors" as Sensors
+participant "Actuators" as Actuators
+participant "Command queue" as Commands
+RC -> RC : Initialize
+loop Every Timer Event
+    Timer -> RC ++ : Timer event
+    RC -> Sensors ++ : Read sensor data
+    Sensors --> RC --: Sensor values
+    RC -> Commands ++: Get next command
+    Commands --> RC --: Command
+    RC -> RC: Think and plan
+    RC -> Actuators ++: Issue control commands
+    Actuators --> RC --: Acknowledge
+    return
+end
+@enduml

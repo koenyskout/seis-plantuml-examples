@@ -1,0 +1,28 @@
+@startuml
+node "Browser" {
+    component "React Web Application" as reactApp
+    rectangle "javascript" as js {
+        file "react.min.js" as reactjs
+        file "app.js" as appjs
+    }
+}
+node "CDN" {
+    artifact "react.min.js" as reactjs_cdn
+}
+cloud "AWS" {
+    node "WebServer" <<Docker>> {
+        artifact "app.js" as appjs_server
+        component "Application Server" as appServer
+        artifact "config.yml" as configFile
+    }
+    node "Database" <<Docker>> {
+        database "Postgres" as database
+    }
+}
+reactApp -- appServer : "REST/HTTP"
+appServer --> database : "SQL Query"
+reactjs ..> reactjs_cdn : <<downloaded from>>
+appjs .> appjs_server : <<downloaded from>>
+configFile ..> appServer : <<configures>>
+js ..> reactApp : <<manifests>>
+@enduml

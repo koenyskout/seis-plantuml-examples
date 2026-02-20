@@ -1,0 +1,12 @@
+@startuml
+[*] -> Normal
+state Normal {
+    [*] -> Red
+    Red --> Green : after 60s
+    Green --> Yellow : after 60s
+    Yellow --> Red : after 5s
+}
+state "Blinking" as error
+Normal -> error : on error
+error -> Normal : reset
+@enduml

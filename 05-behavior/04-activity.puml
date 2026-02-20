@@ -1,0 +1,25 @@
+@startuml
+|You|
+start
+:Say goodmorning;
+|Partner|
+:Say goodmorning;
+|You|
+:Boil water;
+:Pour boiled water over tea;
+if (Want toast?) then (yes)
+    fork
+        |You|
+        :Put bread into toaster;
+    fork again
+        |Partner|
+        :Take jam jar;
+        |You|
+        :Open jar;
+        end merge
+        |You|
+        :Spread jam on toast;
+    else (no)
+    endif
+    stop
+    @enduml

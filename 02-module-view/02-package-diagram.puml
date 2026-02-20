@@ -1,0 +1,22 @@
+@startuml
+package Core {
+    package Domain { }
+    package Util { }
+}
+package UI {
+    package CLI { }
+    package Web { }
+    package JavaFXUI { }
+}
+package JavaFX <<library>> {
+}
+package React <<library>> {
+}
+CLI ..> Domain
+Web ..> Domain
+JavaFXUI ..> Domain
+Domain ..> Util
+JavaFXUI ..> JavaFX
+Web ..> React
+@enduml
+

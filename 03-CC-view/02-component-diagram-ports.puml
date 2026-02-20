@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+component "IoT Device 1" as iot
+[IoT Device 2] as iot2
+component "MQTT" <<connector>> as MQTT {
+    portin Publish
+    portout Subscribe
+    portout Notify
+}
+component Visualization
+iot --> Publish
+iot2 --> Publish
+
+Subscribe <--> Visualization
+Notify --> Visualization
+@enduml

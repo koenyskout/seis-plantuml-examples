@@ -1,0 +1,14 @@
+@startuml
+interface Payment {
+    timestamp: DateTime
+}
+abstract class BasePayment extends Payment
+class Cash extends BasePayment
+class CreditCard extends BasePayment
+class BankTransfer extends BasePayment
+class Invoice {
+    amount: Money
+    status(): Status
+}
+Invoice - Payment : > paid
+@enduml
