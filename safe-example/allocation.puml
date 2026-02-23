@@ -1,0 +1,8 @@
+@startuml
+node "Safe OS" {
+    node SafeLogic <<process>> {
+        component main <<thread>>
+        component Timer <<thread>>
+    }
+}
+@enduml

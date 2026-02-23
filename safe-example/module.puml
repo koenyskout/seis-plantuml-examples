@@ -1,0 +1,31 @@
+@startuml
+package OS <<external>> {
+    interface IO {}
+    interface BoltMotor {}
+}
+package safe {
+    package core {
+        class Safe {}
+        interface Lock {}
+        interface PinEntryDevice {}
+        Safe ..> Lock
+        Safe ..> PinEntryDevice
+    }
+    package hardware {
+        class BoltMotorLock extends safe.core.Lock {}
+        class IOPinEntryDevice extends safe.core.PinEntryDevice {}
+    }
+
+    BoltMotorLock ..> BoltMotor
+    IOPinEntryDevice ..> IO
+
+    ' package tests <<tests>> {
+    '     package util {
+    '         class DummyLock extends safe.core.Lock {}
+    '         class DummyPINEntry extends safe.core.PinEntryDevice {}
+    '     }
+    ' }
+}
+
+
+@enduml

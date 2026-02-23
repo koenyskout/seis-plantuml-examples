@@ -1,0 +1,12 @@
+@startuml
+state Locked
+state Unlocked
+state Timeout
+
+[*] --> Unlocked
+Unlocked --> Locked : lock(PIN)
+Locked --> Unlocked : unlock(PIN)
+Locked --> Locked : unlock(wrong PIN)
+Locked --> Timeout : 3x unlock(wrong PIN)
+Timeout --> Locked : timeout expired
+@enduml
